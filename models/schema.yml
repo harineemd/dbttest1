@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: raw_landing
+    database: EDW_STAGE
+    schema: LANDING
+    tables:
+      - name: raw_customers
+
+models:
+  - name: dim_customer_360
+    description: "Enterprise 360 Customer Dimension with SCD Type 2 Tracking"
+    columns:
+      - name: customer_sk
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Natural business customer ID"
+        tests:
+          - not_null
